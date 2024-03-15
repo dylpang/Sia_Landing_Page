@@ -1,42 +1,45 @@
-import ProductImage from "../assets/ChatImage.png";
+import React, { useState } from "react";
+import ProductImage from "../assets/Sia_Image_Glow.png";
 import CustomButton from "./Button";
 
 const Hero = () => {
+  const [email, setEmail] = useState("");
+
+  const handleInputChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle the email submission here (e.g., send to a server or store in state)
+    console.log("Email submitted:", email);
+  };
+
   return (
-    <div
-      className="h-screen mx-auto px-4 py-8 flex flex-wrap items-center justify-between"
-      style={{ maxWidth: "1120px"}}
-    >
-      <div className="w-full lg:w-1/2 mb-8 lg:mb-0 lg:mr-8 text-left">
-        <h1
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(16,77,229,1) 0%, rgba(13,135,235,1) 50%, rgba(12,154,215,1) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            lineHeight: "1.5",
-            backgroundClip: "text",
-            color: "transparent",
-            display: "inline-block",
-            fontWeight: "bold",
-            marginBottom: "1rem",
-          }}
-        >
-          Learning Made Easy
-        </h1>
-        <p className="text-2xl text-grey-100 mb-8">
-          Harness the power of artificial intelligence to create personalized
-          study guides that adapt to your learning style.
-        </p>
-      <CustomButton> Get Started</CustomButton>
-      </div>
-      <div className="w-full lg:w-5/12">
-        <img
-          src={ProductImage}
-          alt="Product"
-          className="max-w-full h-auto rounded-lg"
+    <div className="flex flex-col items-center text-center pt-500 ">
+      <h1 className="text-4xl font-bold mt-40">
+        Welcome to Sia – Your Path to Smarter Studying
+      </h1>
+      <h2 className="text-2xl mt-8">
+        Discover a new era of personalized learning, tailored to your unique
+        academic journey.
+      </h2>
+      <form onSubmit={handleSubmit} className="mt-8">
+        <input
+          type="email"
+          value={email}
+          onChange={handleInputChange}
+          placeholder="Enter your email"
+          className="border-2 bg-grey-800 border-gray-600 p-2 mr-2 rounded-md"
         />
-      </div>
+        <CustomButton
+          type="submit"
+          className="bg-blue-500 text-white p-2 rounded-md ml-2"
+        >
+          Join Waitlist
+        </CustomButton>
+      </form>
+      <img src={ProductImage} alt="Description of the image" className="mt-4" />
     </div>
   );
 };
